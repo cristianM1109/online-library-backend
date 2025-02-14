@@ -13,7 +13,7 @@
 
     import io.swagger.v3.oas.annotations.Hidden;
 
-    @Hidden // needed for swagger to accessible 
+    @Hidden // needed for swagger to be accessible 
     @ControllerAdvice
     public class GlobalExceptionHandler {
 
