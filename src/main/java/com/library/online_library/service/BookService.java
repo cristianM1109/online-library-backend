@@ -19,12 +19,10 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    // Creare carte nouă
     public Book createBook(Book book) {
         return bookRepository.save(book);
     }
 
-    // Obține toate cărțile
     public Page<Book> getAllBooks(Pageable pageable) {
         return bookRepository.findAll(pageable);
     }
@@ -33,12 +31,10 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    // Obține o carte după ID
     public Optional<Book> getBookById(Long id) {
         return bookRepository.findById(id);
     }
 
-    // Actualizare carte existentă
     public Optional<Book> updateBook(Long id, Book bookDetails) {
         return bookRepository.findById(id).map(existingBook -> {
             existingBook.setTitle(bookDetails.getTitle());
@@ -50,7 +46,6 @@ public class BookService {
         });
     }
 
-    // Ștergere carte după ID
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
