@@ -18,15 +18,13 @@ public class AiService {
 
     private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
 
-    private final RestTemplate restTemplate; // 🔹 Injectăm RestTemplate
+    private final RestTemplate restTemplate;
 
-    // 🔹 Constructor cu dependența injectată
     public AiService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     public String generateInsight(Book book) {
-        // Construim mesajele pentru API-ul ChatGPT
         JSONObject requestBody = new JSONObject();
         requestBody.put("model", "gpt-3.5-turbo");
 
@@ -47,17 +45,14 @@ public class AiService {
         requestBody.put("messages", messages);
         requestBody.put("max_tokens", 100);
 
-        // Setăm header-ele HTTP
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(openAiApiKey);
 
         HttpEntity<String> request = new HttpEntity<>(requestBody.toString(), headers);
 
-        // 🔹 Acum folosim instanța injectată de RestTemplate
         String response = restTemplate.postForObject(OPENAI_URL, request, String.class);
 
-        // Extragem răspunsul generat de AI
         JSONObject jsonResponse = new JSONObject(response);
         return jsonResponse.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content").trim();
     }
