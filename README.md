@@ -6,8 +6,8 @@ This is the backend of the Online Library application, built with **Spring Boot*
 ## Setup and Installation
 Clone the repository and navigate to the backend folder:
 ```sh
-git clone https://github.com/user/online-library.git
-cd online-library/backend```
+git clone https://github.com/cristianM1109/online-library-backend.git
+cd online-library```
 
 This project uses an in-memory H2 database, so no external database setup is required.
 
